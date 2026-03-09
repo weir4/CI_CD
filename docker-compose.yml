@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  python-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python-app
+    restart: unless-stopped
+
+  js-app:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./js:/app
+    command: npm start
+    container_name: js-app
+    restart: unless-stopped
